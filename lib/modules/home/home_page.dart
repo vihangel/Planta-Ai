@@ -24,6 +24,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Observer(builder: (context) {
+      final size = MediaQuery.of(context).size;
       controller.initialize();
       return Scaffold(
         backgroundColor: ColorsApp.white,
@@ -31,7 +32,7 @@ class HomePage extends StatelessWidget {
           centerTitle: true,
           iconTheme: const IconThemeData(color: ColorsApp.primary),
           backgroundColor: ColorsApp.white,
-          elevation: 0,
+          elevation: 1,
           title: SvgPicture.asset(
             ImagesApp.logo,
             color: ColorsApp.primary,
@@ -142,78 +143,73 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        bottomNavigationBar: Observer(
+        floatingActionButton: Observer(
           builder: (context) {
-            return Padding(
-              padding: const EdgeInsets.all(25),
-              child: SizedBox(
-                height: 70,
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    // color: ColorsApp.white,
-                    boxShadow: [
-                      BoxShadow(
-                        color: ColorsApp.gray2.withOpacity(0.2),
-                        spreadRadius: 1,
-                        blurRadius: 6,
-                        offset:
-                            const Offset(0, 1), // changes position of shadow
+            return Container(
+              width: size.width * 0.9,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                color: ColorsApp.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: ColorsApp.gray2.withOpacity(0.2),
+                    spreadRadius: 1,
+                    blurRadius: 6,
+                    offset: const Offset(0, 1), // changes position of shadow
+                  ),
+                ],
+              ),
+              child: BottomNavigationBar(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                unselectedFontSize: 10,
+                selectedFontSize: 14,
+                showUnselectedLabels: true,
+                selectedLabelStyle:
+                    const TextStyle(fontWeight: FontWeight.w600),
+                items: [
+                  BottomNavigationBarItem(
+                      icon: Icon(
+                        controller.selectedIndex == 0
+                            ? Icons.home
+                            : Icons.home_outlined,
+                        size: 24,
+                        color: controller.selectedIndex == 0
+                            ? ColorsApp.primary
+                            : ColorsApp.gray2,
                       ),
-                    ],
-                  ),
-                  child: BottomNavigationBar(
-                    backgroundColor: Colors.transparent,
-                    elevation: 0,
-                    unselectedFontSize: 10,
-                    selectedFontSize: 14,
-                    showUnselectedLabels: true,
-                    selectedLabelStyle:
-                        const TextStyle(fontWeight: FontWeight.w600),
-                    items: [
-                      BottomNavigationBarItem(
-                          icon: Icon(
-                            controller.selectedIndex == 0
-                                ? Icons.home
-                                : Icons.home_outlined,
-                            size: 24,
-                            color: controller.selectedIndex == 0
-                                ? ColorsApp.primary
-                                : ColorsApp.gray2,
-                          ),
-                          label: 'Home'),
-                      BottomNavigationBarItem(
-                          icon: Icon(
-                            controller.selectedIndex == 1
-                                ? Icons.favorite
-                                : Icons.favorite_border_outlined,
-                            size: 24,
-                            color: controller.selectedIndex == 1
-                                ? ColorsApp.primary
-                                : ColorsApp.gray2,
-                          ),
-                          label: 'Favoritos'),
-                      BottomNavigationBarItem(
-                          icon: Icon(
-                            controller.selectedIndex == 2
-                                ? Icons.shopping_cart
-                                : Icons.shopping_cart_outlined,
-                            size: 24,
-                            color: controller.selectedIndex == 2
-                                ? ColorsApp.primary
-                                : ColorsApp.gray2,
-                          ),
-                          label: 'Carrinho'),
-                    ],
-                    currentIndex: controller.selectedIndex,
-                    onTap: controller.onItemTapped,
-                    selectedItemColor: ColorsApp.primary,
-                  ),
-                ),
+                      label: 'Home'),
+                  BottomNavigationBarItem(
+                      icon: Icon(
+                        controller.selectedIndex == 1
+                            ? Icons.favorite
+                            : Icons.favorite_border_outlined,
+                        size: 24,
+                        color: controller.selectedIndex == 1
+                            ? ColorsApp.primary
+                            : ColorsApp.gray2,
+                      ),
+                      label: 'Favoritos'),
+                  BottomNavigationBarItem(
+                      icon: Icon(
+                        controller.selectedIndex == 2
+                            ? Icons.shopping_cart
+                            : Icons.shopping_cart_outlined,
+                        size: 24,
+                        color: controller.selectedIndex == 2
+                            ? ColorsApp.primary
+                            : ColorsApp.gray2,
+                      ),
+                      label: 'Carrinho'),
+                ],
+                currentIndex: controller.selectedIndex,
+                onTap: controller.onItemTapped,
+                selectedItemColor: ColorsApp.primary,
               ),
             );
           },
         ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       );
     });
   }

@@ -39,6 +39,36 @@ mixin _$ProductController on _ProductControllerBase, Store {
     });
   }
 
+  final _$imagesAtom = Atom(name: '_ProductControllerBase.images');
+
+  @override
+  List<ImageProvider<Object>> get images {
+    _$imagesAtom.reportRead();
+    return super.images;
+  }
+
+  @override
+  set images(List<ImageProvider<Object>> value) {
+    _$imagesAtom.reportWrite(value, super.images, () {
+      super.images = value;
+    });
+  }
+
+  final _$plantsOkAtom = Atom(name: '_ProductControllerBase.plantsOk');
+
+  @override
+  List<PlantsModel> get plantsOk {
+    _$plantsOkAtom.reportRead();
+    return super.plantsOk;
+  }
+
+  @override
+  set plantsOk(List<PlantsModel> value) {
+    _$plantsOkAtom.reportWrite(value, super.plantsOk, () {
+      super.plantsOk = value;
+    });
+  }
+
   final _$isSubmitedAtom = Atom(name: '_ProductControllerBase.isSubmited');
 
   @override
@@ -62,6 +92,14 @@ mixin _$ProductController on _ProductControllerBase, Store {
     return _$getPlantsAsyncAction.run(() => super.getPlants());
   }
 
+  final _$loadPlantsAsyncAction =
+      AsyncAction('_ProductControllerBase.loadPlants');
+
+  @override
+  Future<void> loadPlants(dynamic context) {
+    return _$loadPlantsAsyncAction.run(() => super.loadPlants(context));
+  }
+
   final _$_ProductControllerBaseActionController =
       ActionController(name: '_ProductControllerBase');
 
@@ -81,6 +119,8 @@ mixin _$ProductController on _ProductControllerBase, Store {
     return '''
 loader: ${loader},
 plants: ${plants},
+images: ${images},
+plantsOk: ${plantsOk},
 isSubmited: ${isSubmited}
     ''';
   }

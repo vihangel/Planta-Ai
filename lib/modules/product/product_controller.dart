@@ -19,6 +19,11 @@ abstract class _ProductControllerBase with Store {
   List<PlantsModel> plants = [];
 
   @observable
+  List<ImageProvider<Object>> images = [];
+  @observable
+  List<PlantsModel> plantsOk = [];
+
+  @observable
   bool isSubmited = false;
 
   final _plantsService = PlantsServices(Dio());
@@ -30,15 +35,39 @@ abstract class _ProductControllerBase with Store {
 
   @action
   Future<void> getPlants() async {
+    loader = "loading";
     try {
       List<PagesPlantsModel> response = [];
       response.add(await _plantsService.getPlants(
           Constants.API_KEY_PEXEL, "Plants", 10));
       debugPrint(response.toString());
       plants.clear();
-      response[0].photos!.forEach((PlantsModel element) => plants.add(element));
+      for (var element in response[0].photos!) {
+        plants.add(element);
+      }
+
+      if (response[0].photos!.isEmpty) {
+        loader = "empty";
+      }
+
+      print(loader);
     } catch (err) {
       print(err);
+      loader = "empty";
     }
+  }
+
+  @action
+  Future<void> loadPlants(context) async {
+    loader = "loading";
+    for (var i = 0; i < plants.length; i++) {
+      images.add(NetworkImage(
+        plants[i].src!.original,
+      ));
+      await precacheImage(images[i], context);
+      print("passou aqui");
+    }
+
+    loader = "ready";
   }
 }

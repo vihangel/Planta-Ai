@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "868293707342",
+    "project_id": "agence-teste",
+    "storage_bucket": "agence-teste.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:868293707342:android:183ee0dc6b738b9f68651f",
+        "android_client_info": {
+          "package_name": "com.example.plantaae"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "868293707342-gamvhdhpqb5gfv7db8k6058ae51goadp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.plantaae",
+            "certificate_hash": "19cdf2b6fd5f2f02428ab63e3fe8658cd68af79e"
+          }
+        },
+        {
+          "client_id": "868293707342-7361ng436nvema2oo0u0s0vsga7jtdhq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPQe-awWUg1g-Lni6h430n3PYyBNOVi-Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "868293707342-7361ng436nvema2oo0u0s0vsga7jtdhq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

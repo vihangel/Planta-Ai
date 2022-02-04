@@ -76,6 +76,22 @@ mixin _$LoginController on _LoginControllerBase, Store {
     return _$verifyAsyncAction.run(() => super.verify());
   }
 
+  final _$faceBookAuthAsyncAction =
+      AsyncAction('_LoginControllerBase.faceBookAuth');
+
+  @override
+  Future<void> faceBookAuth() {
+    return _$faceBookAuthAsyncAction.run(() => super.faceBookAuth());
+  }
+
+  final _$googleAuthAsyncAction =
+      AsyncAction('_LoginControllerBase.googleAuth');
+
+  @override
+  Future<void> googleAuth() {
+    return _$googleAuthAsyncAction.run(() => super.googleAuth());
+  }
+
   final _$_LoginControllerBaseActionController =
       ActionController(name: '_LoginControllerBase');
 
@@ -129,6 +145,17 @@ mixin _$LoginController on _LoginControllerBase, Store {
         name: '_LoginControllerBase.setEmail');
     try {
       return super.setEmail(value);
+    } finally {
+      _$_LoginControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void saveUser() {
+    final _$actionInfo = _$_LoginControllerBaseActionController.startAction(
+        name: '_LoginControllerBase.saveUser');
+    try {
+      return super.saveUser();
     } finally {
       _$_LoginControllerBaseActionController.endAction(_$actionInfo);
     }
