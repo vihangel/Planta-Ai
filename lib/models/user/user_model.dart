@@ -1,14 +1,18 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:planta_ai/models/plants/plants_model.dart';
-import 'package:planta_ai/models/plants/src_url/src_model.dart';
+
 part 'user_model.g.dart';
 
 @JsonSerializable()
 class UserModel {
   final String name;
+  final String? email;
   final String? photoURL;
 
+  final String? id;
+
   UserModel({
+    this.email,
+    this.id,
     required this.name,
     this.photoURL,
   });

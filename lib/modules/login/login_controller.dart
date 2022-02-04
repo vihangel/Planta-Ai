@@ -2,6 +2,7 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mobx/mobx.dart';
+
 import 'package:planta_ai/models/user/user_model.dart';
 
 part 'login_controller.g.dart';
@@ -83,50 +84,33 @@ abstract class _LoginControllerBase with Store {
         permissions: [
           'public_profile',
           'email',
-          'pages_show_list',
-          'pages_messaging',
-          'pages_manage_metadata'
         ],
-      ); // by default we request the email and the public profile
-// or FacebookAuth.i.login()
+      );
+
       if (result.status == LoginStatus.success) {
         // you are logged
         final AccessToken accessToken = result.accessToken!;
+        final userData = await FacebookAuth.instance.getUserData();
+        print("\n a \naaa\naa\na\na\na\na\na\na");
+        final picture = userData['picture'];
+
+        final data = picture['data'];
+
+        final user = UserModel(
+          name: userData['name'],
+          photoURL: data["url"],
+          email: userData['email'],
+          id: userData['id'],
+        );
+
+        print(user.id.toString());
       } else {
         print(result.status);
         print(result.message);
       }
-      // print("login");
-      // LoginResult token =
-      //     await FacebookAuth.instance.login(permissions: ["email"]);
-      // print("token");
-      // print(token.accessToken.toString());
-      // // get the user data
-      // final userData = await FacebookAuth.instance.getUserData();
-      //print(auserData);
-
     } catch (err) {
       print(err);
     }
-    // await FacebookAuth.i.logOut();
-    // final result =
-    //     await FacebookAuth.i.login(permissions: ["public_profile", "email"]);
-
-    // print(result.status);
-    // if (result.status == LoginStatus.success) {
-    //   final response = await FacebookAuth.i.getUserData(fields: "name, email");
-    //   final user = UserModel(
-    //     name: response.toString(),
-    //     photoURL: "response.photoUrl",
-    //   );
-    //   //teste = userData;
-    //   print("user.name");
-    //   print("\n\n\n\n\n\n\n\n\n");
-    //   print("\n\n\n\n\n\n\n\n\n");
-    //   print(response);
-    //   print(user.name);
-    //   print("\n\n\n\n\n\n\n\n\n");
-    // }
   }
 
   var teste;
@@ -140,10 +124,12 @@ abstract class _LoginControllerBase with Store {
       final user = UserModel(
         name: response!.displayName!,
         photoURL: response.photoUrl,
+        email: response.email,
+        id: response.id.toString(),
       );
 
-      print("\n\n\n\n\n\n\n\n\n");
-      print(user.name);
+      print("\na\na\na\na\na\na\na\na\n");
+      print(user.toJson());
     } catch (error) {
       print(error);
     }
