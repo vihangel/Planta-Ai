@@ -2,7 +2,7 @@
 <img width="100%" src="https://github.com/vihangel/Planta-Ai/blob/master/assets/img/logo_fundo_github.png" />&nbsp;&nbsp;
 <br>
 <h2 align="center">
-  o "Planta Ai!" é um app de e-Commerce para plantas. Além disso, tem como objetivo apresentar o desenvolvimento de um programa mobile, construído em Flutter, para um teste prático.
+  O app "Planta Ai!" é um e-Commerce para plantas. Além disso, tem como objetivo apresentar o desenvolvimento de um programa mobile, construído em Flutter, para um teste prático.
 </h2>
 <br>
 
