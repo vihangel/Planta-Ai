@@ -14,6 +14,7 @@
 
 - [x] UI - Login, campos usuário, senha e esqueci minha senha e também os botões do login social.
 - [x] Login Social - Facebook e Google
+- [x] UI - Recuperar senha
 - [x] UI - Listagem de produtos em duas colunas com thumbnail e titulo.
 - [x] API - Pexel para as imagens falsa dos produtos
 - [ ] Deve ser aplicado Lazy Loading na listagem
