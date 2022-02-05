@@ -37,16 +37,20 @@ class ProductPage extends StatelessWidget {
                     child: SizedBox(
                       width: size.width * 0.3,
                       child: Container(
-                        padding: const EdgeInsets.all(10.0),
                         decoration: const BoxDecoration(
                           borderRadius:
                               const BorderRadius.all(Radius.circular(10.0)),
                           color: ColorsApp.primary,
                         ),
-                        child: Text(
-                          "verde",
-                          style: TextStyles.buttonBold,
-                          textAlign: TextAlign.center,
+                        child: TextButton(
+                          onPressed: () {
+                            controller.updatePlants("green plants");
+                          },
+                          child: Text(
+                            "verde",
+                            style: TextStyles.buttonBold,
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                         //color: AppColors.stroke,
                       ),
@@ -57,16 +61,20 @@ class ProductPage extends StatelessWidget {
                     child: SizedBox(
                       width: size.width * 0.3,
                       child: Container(
-                        padding: const EdgeInsets.all(10.0),
                         decoration: BoxDecoration(
                           borderRadius:
                               const BorderRadius.all(Radius.circular(10.0)),
                           color: Colors.blue[600],
                         ),
-                        child: Text(
-                          "azul",
-                          style: TextStyles.buttonBold,
-                          textAlign: TextAlign.center,
+                        child: TextButton(
+                          onPressed: () {
+                            controller.updatePlants("blue plants");
+                          },
+                          child: Text(
+                            "azul",
+                            style: TextStyles.buttonBold,
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                         //color: AppColors.stroke,
                       ),
@@ -77,16 +85,20 @@ class ProductPage extends StatelessWidget {
                     child: SizedBox(
                       width: size.width * 0.3,
                       child: Container(
-                        padding: const EdgeInsets.all(10.0),
                         decoration: BoxDecoration(
                           borderRadius:
                               const BorderRadius.all(Radius.circular(10.0)),
                           color: Colors.orange[400],
                         ),
-                        child: Text(
-                          "laranja",
-                          style: TextStyles.buttonBold,
-                          textAlign: TextAlign.center,
+                        child: TextButton(
+                          onPressed: () {
+                            controller.updatePlants("orange plants");
+                          },
+                          child: Text(
+                            "laranja",
+                            style: TextStyles.buttonBold,
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                         //color: AppColors.stroke,
                       ),
@@ -97,16 +109,20 @@ class ProductPage extends StatelessWidget {
                     child: SizedBox(
                       width: size.width * 0.3,
                       child: Container(
-                        padding: const EdgeInsets.all(10.0),
                         decoration: BoxDecoration(
                           borderRadius:
                               const BorderRadius.all(Radius.circular(10.0)),
                           color: Colors.red[400],
                         ),
-                        child: Text(
-                          "vermelho",
-                          style: TextStyles.buttonBold,
-                          textAlign: TextAlign.center,
+                        child: TextButton(
+                          onPressed: () {
+                            controller.updatePlants("red plants");
+                          },
+                          child: Text(
+                            "vermelho",
+                            style: TextStyles.buttonBold,
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                         //color: AppColors.stroke,
                       ),
@@ -117,16 +133,20 @@ class ProductPage extends StatelessWidget {
                     child: SizedBox(
                       width: size.width * 0.3,
                       child: Container(
-                        padding: const EdgeInsets.all(10.0),
                         decoration: BoxDecoration(
                           borderRadius:
                               const BorderRadius.all(Radius.circular(10.0)),
                           color: Colors.purple[400],
                         ),
-                        child: Text(
-                          "roxo",
-                          style: TextStyles.buttonBold,
-                          textAlign: TextAlign.center,
+                        child: TextButton(
+                          onPressed: () {
+                            controller.updatePlants("purple plants");
+                          },
+                          child: Text(
+                            "roxo",
+                            style: TextStyles.buttonBold,
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                         //color: AppColors.stroke,
                       ),
@@ -248,6 +268,15 @@ class ProductPage extends StatelessWidget {
             }),
           ),
         ),
+        Padding(
+          padding: const EdgeInsets.all(25.0),
+          child: Text(
+            "Parece que não encontramos mais nada por aqui",
+            style: TextStyles.regular,
+            textAlign: TextAlign.center,
+          ),
+        ),
+        Padding(padding: EdgeInsets.all(50)),
       ],
     );
   }
@@ -267,7 +296,7 @@ class ProductPage extends StatelessWidget {
         );
       } else {
         return Container(
-          child: const Text("aaa"),
+          child: const Text("Não existe resultados para essa pesquisa"),
         );
       }
     });

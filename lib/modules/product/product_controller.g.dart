@@ -92,6 +92,14 @@ mixin _$ProductController on _ProductControllerBase, Store {
     return _$getPlantsAsyncAction.run(() => super.getPlants());
   }
 
+  final _$updatePlantsAsyncAction =
+      AsyncAction('_ProductControllerBase.updatePlants');
+
+  @override
+  Future<void> updatePlants(String color) {
+    return _$updatePlantsAsyncAction.run(() => super.updatePlants(color));
+  }
+
   final _$loadPlantsAsyncAction =
       AsyncAction('_ProductControllerBase.loadPlants');
 

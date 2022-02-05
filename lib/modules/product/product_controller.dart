@@ -42,7 +42,7 @@ abstract class _ProductControllerBase with Store {
     try {
       List<PagesPlantsModel> response = [];
       response.add(await _plantsService.getPlants(
-          Constants.API_KEY_PEXEL, "Plants", 10));
+          Constants.API_KEY_PEXEL, "plants", 10));
       debugPrint(response.toString());
       plants.clear();
       for (var element in response[0].photos!) {
@@ -53,6 +53,30 @@ abstract class _ProductControllerBase with Store {
         loader = "empty";
       }
 
+      print(loader);
+    } catch (err) {
+      print(err);
+      loader = "empty";
+    }
+  }
+
+  @action
+  Future<void> updatePlants(String color) async {
+    loader = "loading";
+    try {
+      List<PagesPlantsModel> response = [];
+      response.add(
+          await _plantsService.getPlants(Constants.API_KEY_PEXEL, color, 10));
+      debugPrint(response.toString());
+      plants.clear();
+      for (var element in response[0].photos!) {
+        plants.add(element);
+      }
+
+      if (response[0].photos!.isEmpty) {
+        loader = "empty";
+      }
+      loader = "ready";
       print(loader);
     } catch (err) {
       print(err);
