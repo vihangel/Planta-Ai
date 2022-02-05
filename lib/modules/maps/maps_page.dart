@@ -131,7 +131,7 @@ class MapsPage extends StatelessWidget {
                           softWrap: true,
                         ),
                         Text(
-                          "Av. São Sebastião, goibaieras, 2232, apto 201, 78032-100",
+                          controller.adress,
                           style: TextStyles.titleCard,
                           textAlign: TextAlign.left,
                           softWrap: true,

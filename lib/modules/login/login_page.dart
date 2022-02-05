@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:plantaai/modules/login/password_recovery/password_page.dart';
 
 import 'package:plantaai/shared/resources/colors.dart';
 import 'package:plantaai/shared/resources/images.dart';
@@ -34,13 +35,7 @@ class LoginPage extends StatelessWidget {
                   horizontal: size.width * 0.15,
                 ),
                 decoration: const BoxDecoration(
-                  //color: const Color(0xff7c94b6),
-                  image: DecorationImage(
-                    image: AssetImage(ImagesApp.splashbg),
-                    fit: BoxFit.cover,
-                    //opacity: 1,
-                  ),
-
+                  color: ColorsApp.primary,
                   borderRadius: BorderRadius.only(
                     bottomRight: Radius.circular(60.0),
                     bottomLeft: Radius.circular(60.0),
@@ -58,14 +53,7 @@ class LoginPage extends StatelessWidget {
                 padding: EdgeInsets.all(30.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
-                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  // ignore: prefer_const_literals_to_create_immutables
                   children: [
-                    // Text(
-                    //   "Vamos comprar novas plantinhas?",
-                    //   style: TextStyles.titleRegular,
-                    //   textAlign: TextAlign.center,
-                    // ),
                     Padding(padding: EdgeInsets.all(10)),
                     Text(
                       "Faça login para comprar novas plantinhas",
@@ -113,7 +101,10 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Modular.to.push(MaterialPageRoute(
+                            builder: (context) => const PasswordPage()));
+                      },
                       child: Text(
                         "Esqueceu a senha?",
                         style: TextStyles.regular,

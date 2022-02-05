@@ -71,6 +71,28 @@ mixin _$MapsController on _MapsControllerBase, Store {
     });
   }
 
+  final _$adressAtom = Atom(name: '_MapsControllerBase.adress');
+
+  @override
+  String get adress {
+    _$adressAtom.reportRead();
+    return super.adress;
+  }
+
+  @override
+  set adress(String value) {
+    _$adressAtom.reportWrite(value, super.adress, () {
+      super.adress = value;
+    });
+  }
+
+  final _$getAddressAsyncAction = AsyncAction('_MapsControllerBase.getAddress');
+
+  @override
+  Future<String> getAddress(double? lat, double? lang) {
+    return _$getAddressAsyncAction.run(() => super.getAddress(lat, lang));
+  }
+
   final _$_MapsControllerBaseActionController =
       ActionController(name: '_MapsControllerBase');
 
@@ -113,7 +135,8 @@ mixin _$MapsController on _MapsControllerBase, Store {
 initialcameraposition: ${initialcameraposition},
 controller: ${controller},
 plants: ${plants},
-location: ${location}
+location: ${location},
+adress: ${adress}
     ''';
   }
 }

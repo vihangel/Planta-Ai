@@ -195,14 +195,14 @@ class HomePage extends StatelessWidget {
                   BottomNavigationBarItem(
                       icon: Icon(
                         controller.selectedIndex == 2
-                            ? Icons.shopping_cart
-                            : Icons.shopping_cart_outlined,
+                            ? Icons.list_alt
+                            : Icons.history,
                         size: 24,
                         color: controller.selectedIndex == 2
                             ? ColorsApp.primary
                             : ColorsApp.gray2,
                       ),
-                      label: 'Carrinho'),
+                      label: 'histórico'),
                 ],
                 currentIndex: controller.selectedIndex,
                 onTap: controller.onItemTapped,

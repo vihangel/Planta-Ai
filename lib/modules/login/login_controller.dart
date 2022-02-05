@@ -2,7 +2,6 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mobx/mobx.dart';
-
 import 'package:plantaai/data/models/user/user_model.dart';
 import 'package:plantaai/data/repository/user/user_repository.dart';
 
@@ -70,7 +69,15 @@ abstract class _LoginControllerBase with Store {
     }
   }
 
-  //https://pub.dev/packages/sms_user_consent redefinir senha futura implementação
+  @action
+  Future<void> passwordRecovery() async {
+    isSubmited = true;
+
+    if (validateEmail() == null) {
+      Modular.to.pop();
+      reset();
+    }
+  }
 
   @action
   Future<void> faceBookAuth() async {
@@ -84,8 +91,6 @@ abstract class _LoginControllerBase with Store {
       );
 
       if (result.status == LoginStatus.success) {
-        // you are logged
-        //final AccessToken accessToken = result.accessToken!;
         final userData = await FacebookAuth.instance.getUserData();
         print("\n a \naaa\naa\na\na\na\na\na\na");
         final picture = userData['picture'];
@@ -114,7 +119,6 @@ abstract class _LoginControllerBase with Store {
   var teste;
   @action
   Future<void> googleAuth() async {
-    //final authController = AuthController();
     GoogleSignIn _googleSignIn = GoogleSignIn();
     await _googleSignIn.signOut();
     try {

@@ -39,9 +39,8 @@ class ProductPage extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.all(10.0),
                         decoration: const BoxDecoration(
-                          borderRadius: const BorderRadius.all(Radius.circular(
-                                  10.0) //                 <--- border radius here
-                              ),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10.0)),
                           color: ColorsApp.primary,
                         ),
                         child: Text(
@@ -60,9 +59,8 @@ class ProductPage extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.all(10.0),
                         decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(Radius.circular(
-                                  10.0) //                 <--- border radius here
-                              ),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10.0)),
                           color: Colors.blue[600],
                         ),
                         child: Text(
@@ -81,9 +79,8 @@ class ProductPage extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.all(10.0),
                         decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(Radius.circular(
-                                  10.0) //                 <--- border radius here
-                              ),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10.0)),
                           color: Colors.orange[400],
                         ),
                         child: Text(
@@ -102,9 +99,8 @@ class ProductPage extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.all(10.0),
                         decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(Radius.circular(
-                                  10.0) //                 <--- border radius here
-                              ),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10.0)),
                           color: Colors.red[400],
                         ),
                         child: Text(
@@ -123,9 +119,8 @@ class ProductPage extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.all(10.0),
                         decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(Radius.circular(
-                                  10.0) //                 <--- border radius here
-                              ),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10.0)),
                           color: Colors.purple[400],
                         ),
                         child: Text(
@@ -192,7 +187,7 @@ class ProductPage extends StatelessWidget {
                             placeholder: (context, url) => Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                CircularProgressIndicator(),
+                                const CircularProgressIndicator(),
                               ],
                             ),
                             errorWidget: (context, url, error) =>
@@ -200,25 +195,11 @@ class ProductPage extends StatelessWidget {
                             imageUrl: controller.plants[index].src!.original,
                             fit: BoxFit.cover,
                           ),
-
-                          // ignore: prefer_const_constructors
-                          decoration: BoxDecoration(
-                            // image: DecorationImage(
-                            //   image: controller.images[index]
-                            //   // controller.plants[index].src!.original,
-
-                            //   ,
-                            //   fit: BoxFit.cover,
-
-                            //   //opacity: 1,
-                            // ),
-                            borderRadius: const BorderRadius.all(
-                                Radius.circular(
-                                    10.0) //                 <--- border radius here
-                                ),
+                          decoration: const BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
                             color: ColorsApp.white,
                           ),
-                          //color: AppColors.stroke,
                         ),
                       ),
                       Text(
@@ -286,7 +267,7 @@ class ProductPage extends StatelessWidget {
         );
       } else {
         return Container(
-          child: Text("aaa"),
+          child: const Text("aaa"),
         );
       }
     });

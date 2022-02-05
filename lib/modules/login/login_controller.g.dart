@@ -76,6 +76,14 @@ mixin _$LoginController on _LoginControllerBase, Store {
     return _$verifyAsyncAction.run(() => super.verify());
   }
 
+  final _$passwordRecoveryAsyncAction =
+      AsyncAction('_LoginControllerBase.passwordRecovery');
+
+  @override
+  Future<void> passwordRecovery() {
+    return _$passwordRecoveryAsyncAction.run(() => super.passwordRecovery());
+  }
+
   final _$faceBookAuthAsyncAction =
       AsyncAction('_LoginControllerBase.faceBookAuth');
 

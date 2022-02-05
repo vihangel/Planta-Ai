@@ -31,7 +31,6 @@ abstract class _HomeControllerBase with Store {
   @action
   void initialize() {
     getUser();
-    getImagePerfil();
   }
 
   @action
@@ -58,7 +57,7 @@ abstract class _HomeControllerBase with Store {
 
   @action
   void getImagePerfil() {
-    if (user[0].photoURL == null) {
+    if (user[0].photoURL! == null) {
       imgPerfil = Container(
         width: 80,
         color: ColorsApp.primary,
@@ -84,12 +83,11 @@ abstract class _HomeControllerBase with Store {
 
   @action
   Future<void> logout() async {
+    Modular.to.navigate("/splash");
     GoogleSignIn _googleSignIn = GoogleSignIn();
     await _googleSignIn.signOut();
     await FacebookAuth.i.logOut();
     await UserRepository.deleteAll();
-
-    Modular.to.navigate("/login");
 
     user.clear();
   }
