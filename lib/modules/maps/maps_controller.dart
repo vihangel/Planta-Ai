@@ -2,8 +2,9 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:mobx/mobx.dart';
-import 'package:planta_ai/data/models/plants/plants_model.dart';
-import 'package:planta_ai/modules/product/product_controller.dart';
+import 'package:plantaai/data/models/plants/plants_model.dart';
+
+import 'package:plantaai/modules/product/product_controller.dart';
 
 part 'maps_controller.g.dart';
 

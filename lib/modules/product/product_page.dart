@@ -2,10 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:planta_ai/modules/maps/maps_page.dart';
-import 'package:planta_ai/modules/product/product_controller.dart';
-import 'package:planta_ai/shared/resources/colors.dart';
-import 'package:planta_ai/shared/resources/text_style.dart';
+
+import 'package:plantaai/modules/maps/maps_page.dart';
+import 'package:plantaai/modules/product/product_controller.dart';
+import 'package:plantaai/shared/resources/colors.dart';
+import 'package:plantaai/shared/resources/text_style.dart';
 
 final controller = Modular.get<ProductController>();
 

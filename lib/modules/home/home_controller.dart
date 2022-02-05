@@ -1,9 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mobx/mobx.dart';
-import 'package:planta_ai/data/repository/user/user_repository.dart';
+import 'package:plantaai/data/models/user/user_model.dart';
+import 'package:plantaai/data/repository/user/user_repository.dart';
+
+import 'package:plantaai/shared/resources/colors.dart';
 
 part 'home_controller.g.dart';
 
@@ -11,13 +15,7 @@ class HomeController = _HomeControllerBase with _$HomeController;
 
 abstract class _HomeControllerBase with Store {
   @observable
-  String email = "";
-
-  @observable
-  String password = "";
-
-  @observable
-  String name = "";
+  List<UserModel> user = ObservableList();
 
   @observable
   String image = "";
@@ -33,31 +31,55 @@ abstract class _HomeControllerBase with Store {
   @action
   void initialize() {
     getUser();
+    getImagePerfil();
   }
 
   @action
-  void setPassword(String value) {
-    password = value;
-  }
-
-  @action
-  void getUser() {
-    name = "Angel ";
+  Future<void> getUser() async {
+    if (user.isEmpty) {
+      user.clear();
+      user.addAll(await UserRepository.getUser());
+      getImagePerfil();
+    }
   }
 
   @action
   Widget getImage() {
     if (image == "") {
-      return Icon(Icons.person, color: Colors.white, size: 20);
+      return const Icon(Icons.person, color: Colors.white, size: 20);
     } else {
       return Image.network(
           'https://docs.flutter.dev/assets/images/dash/dash-fainting.gif');
     }
   }
 
+  @observable
+  Widget imgPerfil = Container();
+
   @action
-  void setEmail(String value) {
-    email = value;
+  void getImagePerfil() {
+    if (user[0].photoURL == null) {
+      imgPerfil = Container(
+        width: 80,
+        color: ColorsApp.primary,
+        child: const Icon(
+          Icons.person_outline_sharp,
+          color: ColorsApp.white,
+        ),
+      );
+    } else {
+      imgPerfil = CachedNetworkImage(
+        placeholder: (context, url) => Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircularProgressIndicator(),
+          ],
+        ),
+        errorWidget: (context, url, error) => const Icon(Icons.error),
+        fit: BoxFit.cover,
+        imageUrl: user[0].photoURL.toString(),
+      );
+    }
   }
 
   @action
@@ -66,6 +88,9 @@ abstract class _HomeControllerBase with Store {
     await _googleSignIn.signOut();
     await FacebookAuth.i.logOut();
     await UserRepository.deleteAll();
+
     Modular.to.navigate("/login");
+
+    user.clear();
   }
 }

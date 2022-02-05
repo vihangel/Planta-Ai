@@ -1,14 +1,17 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mobx/mobx.dart';
-import 'package:planta_ai/modules/home/home_controller.dart';
-import 'package:planta_ai/modules/product/product_page.dart';
-import 'package:planta_ai/shared/resources/colors.dart';
-import 'package:planta_ai/shared/resources/images.dart';
-import 'package:planta_ai/shared/resources/text_style.dart';
+
+import 'package:plantaai/modules/product/product_page.dart';
+import 'package:plantaai/shared/resources/colors.dart';
+import 'package:plantaai/shared/resources/images.dart';
+import 'package:plantaai/shared/resources/text_style.dart';
+
+import 'home_controller.dart';
 
 final controller = Modular.get<HomeController>();
 
@@ -27,9 +30,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    controller.getUser();
+
     return Observer(builder: (context) {
       final size = MediaQuery.of(context).size;
-      controller.initialize();
+
       return Scaffold(
         backgroundColor: ColorsApp.white,
         appBar: AppBar(
@@ -64,18 +69,9 @@ class HomePage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(
-                                100.0) //                 <--- border radius here
-                            ),
-                        color: ColorsApp.primary,
-                      ),
-                      //color: AppColors.stroke,
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: controller.getImage(),
-                      ),
+                    SizedBox(
+                      height: 80,
+                      child: ClipOval(child: controller.imgPerfil),
                     ),
                     const Padding(padding: EdgeInsets.all(5)),
                     Text(
@@ -83,7 +79,9 @@ class HomePage extends StatelessWidget {
                       style: TextStyles.regular,
                     ),
                     Text(
-                      controller.name,
+                      controller.user[0].name == null
+                          ? "Anonimo"
+                          : controller.user[0].name.toString(),
                       style: TextStyles.bold,
                     ),
                   ],

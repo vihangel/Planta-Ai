@@ -1,6 +1,7 @@
 import 'package:hive/hive.dart';
-import 'package:planta_ai/data/models/user/user_model.dart';
-import 'package:planta_ai/shared/constants.dart';
+
+import 'package:plantaai/data/models/user/user_model.dart';
+import 'package:plantaai/shared/constants.dart';
 
 class UserRepository extends UserModelAdapter {
   static Future<List<UserModel>> saveUser(List<UserModel> value) async {
@@ -24,7 +25,7 @@ class UserRepository extends UserModelAdapter {
       userList.add(dbUser.getAt(i)!);
     }
 
-    print("Pegado infos de usuario" + userList.isEmpty.toString());
+    print("Pegando infos de usuario " + userList.isEmpty.toString());
     return userList;
   }
 

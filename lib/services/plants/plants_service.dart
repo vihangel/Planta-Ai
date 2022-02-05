@@ -1,8 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:plantaai/data/models/plants/page_plants_model.dart';
+import 'package:plantaai/shared/constants.dart';
 
-import 'package:planta_ai/data/models/plants/page_plants_model.dart';
-
-import 'package:planta_ai/shared/constants.dart';
 import 'package:retrofit/http.dart';
 
 part 'plants_service.g.dart';

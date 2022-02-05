@@ -3,10 +3,12 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:planta_ai/modules/login/login_controller.dart';
-import 'package:planta_ai/shared/resources/colors.dart';
-import 'package:planta_ai/shared/resources/images.dart';
-import 'package:planta_ai/shared/resources/text_style.dart';
+
+import 'package:plantaai/shared/resources/colors.dart';
+import 'package:plantaai/shared/resources/images.dart';
+import 'package:plantaai/shared/resources/text_style.dart';
+
+import 'login_controller.dart';
 
 final controller = Modular.get<LoginController>();
 

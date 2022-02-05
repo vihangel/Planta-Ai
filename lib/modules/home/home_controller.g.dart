@@ -9,48 +9,18 @@ part of 'home_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$HomeController on _HomeControllerBase, Store {
-  final _$emailAtom = Atom(name: '_HomeControllerBase.email');
+  final _$userAtom = Atom(name: '_HomeControllerBase.user');
 
   @override
-  String get email {
-    _$emailAtom.reportRead();
-    return super.email;
+  List<UserModel> get user {
+    _$userAtom.reportRead();
+    return super.user;
   }
 
   @override
-  set email(String value) {
-    _$emailAtom.reportWrite(value, super.email, () {
-      super.email = value;
-    });
-  }
-
-  final _$passwordAtom = Atom(name: '_HomeControllerBase.password');
-
-  @override
-  String get password {
-    _$passwordAtom.reportRead();
-    return super.password;
-  }
-
-  @override
-  set password(String value) {
-    _$passwordAtom.reportWrite(value, super.password, () {
-      super.password = value;
-    });
-  }
-
-  final _$nameAtom = Atom(name: '_HomeControllerBase.name');
-
-  @override
-  String get name {
-    _$nameAtom.reportRead();
-    return super.name;
-  }
-
-  @override
-  set name(String value) {
-    _$nameAtom.reportWrite(value, super.name, () {
-      super.name = value;
+  set user(List<UserModel> value) {
+    _$userAtom.reportWrite(value, super.user, () {
+      super.user = value;
     });
   }
 
@@ -82,6 +52,28 @@ mixin _$HomeController on _HomeControllerBase, Store {
     _$selectedIndexAtom.reportWrite(value, super.selectedIndex, () {
       super.selectedIndex = value;
     });
+  }
+
+  final _$imgPerfilAtom = Atom(name: '_HomeControllerBase.imgPerfil');
+
+  @override
+  Widget get imgPerfil {
+    _$imgPerfilAtom.reportRead();
+    return super.imgPerfil;
+  }
+
+  @override
+  set imgPerfil(Widget value) {
+    _$imgPerfilAtom.reportWrite(value, super.imgPerfil, () {
+      super.imgPerfil = value;
+    });
+  }
+
+  final _$getUserAsyncAction = AsyncAction('_HomeControllerBase.getUser');
+
+  @override
+  Future<void> getUser() {
+    return _$getUserAsyncAction.run(() => super.getUser());
   }
 
   final _$logoutAsyncAction = AsyncAction('_HomeControllerBase.logout');
@@ -117,28 +109,6 @@ mixin _$HomeController on _HomeControllerBase, Store {
   }
 
   @override
-  void setPassword(String value) {
-    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
-        name: '_HomeControllerBase.setPassword');
-    try {
-      return super.setPassword(value);
-    } finally {
-      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void getUser() {
-    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
-        name: '_HomeControllerBase.getUser');
-    try {
-      return super.getUser();
-    } finally {
-      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   Widget getImage() {
     final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
         name: '_HomeControllerBase.getImage');
@@ -150,11 +120,11 @@ mixin _$HomeController on _HomeControllerBase, Store {
   }
 
   @override
-  void setEmail(String value) {
+  void getImagePerfil() {
     final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
-        name: '_HomeControllerBase.setEmail');
+        name: '_HomeControllerBase.getImagePerfil');
     try {
-      return super.setEmail(value);
+      return super.getImagePerfil();
     } finally {
       _$_HomeControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -163,11 +133,10 @@ mixin _$HomeController on _HomeControllerBase, Store {
   @override
   String toString() {
     return '''
-email: ${email},
-password: ${password},
-name: ${name},
+user: ${user},
 image: ${image},
-selectedIndex: ${selectedIndex}
+selectedIndex: ${selectedIndex},
+imgPerfil: ${imgPerfil}
     ''';
   }
 }

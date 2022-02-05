@@ -3,11 +3,11 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
-import 'package:planta_ai/data/models/plants/page_plants_model.dart';
-import 'package:planta_ai/data/models/plants/plants_model.dart';
 
-import 'package:planta_ai/services/plants/plants_service.dart';
-import 'package:planta_ai/shared/constants.dart';
+import 'package:plantaai/data/models/plants/page_plants_model.dart';
+import 'package:plantaai/data/models/plants/plants_model.dart';
+import 'package:plantaai/services/plants/plants_service.dart';
+import 'package:plantaai/shared/constants.dart';
 
 part 'product_controller.g.dart';
 

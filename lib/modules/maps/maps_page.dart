@@ -4,11 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
-import 'package:planta_ai/modules/maps/maps_controller.dart';
-
-import 'package:planta_ai/shared/resources/colors.dart';
-import 'package:planta_ai/shared/resources/text_style.dart';
+import 'package:plantaai/modules/maps/maps_controller.dart';
+import 'package:plantaai/shared/resources/colors.dart';
+import 'package:plantaai/shared/resources/text_style.dart';
 
 final controller = Modular.get<MapsController>();
 
@@ -196,8 +194,6 @@ class MapsPage extends StatelessWidget {
                                     title: Text("Deseja realizar a compra?",
                                         style: TextStyles.title),
                                     actions: [
-                                      // Close the dialog
-                                      // You can use the CupertinoDialogAction widget instead
                                       CupertinoButton(
                                           child: const Text(
                                             'Cancelar',
@@ -214,32 +210,23 @@ class MapsPage extends StatelessWidget {
                                               color: ColorsApp.primary),
                                         ),
                                         onPressed: () {
-                                          showCupertinoDialog(
-                                              context: context,
-                                              builder: (_) =>
-                                                  CupertinoAlertDialog(
-                                                    title: Text(
-                                                        "Compra realizada com sucesso!",
-                                                        style:
-                                                            TextStyles.title),
-                                                    content: const Icon(
-                                                      Icons.check_box,
-                                                      color: ColorsApp.primary,
-                                                      size: 150,
-                                                    ),
-                                                    actions: [
-                                                      CupertinoButton(
-                                                        child: const Text('Ok',
-                                                            style: TextStyle(
-                                                                color: ColorsApp
-                                                                    .primary)),
-                                                        onPressed: () {
-                                                          Modular.to.pushNamed(
-                                                              "/home");
-                                                        },
-                                                      )
-                                                    ],
-                                                  ));
+                                          var snackBar = SnackBar(
+                                            backgroundColor: ColorsApp.white,
+                                            duration: Duration(seconds: 5),
+                                            behavior: SnackBarBehavior.floating,
+                                            elevation: 150.0,
+                                            dismissDirection:
+                                                DismissDirection.horizontal,
+                                            content: Text(
+                                                "Compra realizada com sucesso!",
+                                                style: TextStyles.regular),
+                                          );
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(snackBar);
+
+                                          Modular.to.popAndPushNamed(
+                                            "/home",
+                                          );
                                         },
                                       )
                                     ],

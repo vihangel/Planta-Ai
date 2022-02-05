@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:planta_ai/shared/resources/colors.dart';
+
+import 'colors.dart';
 
 class TextStyles {
   static final titleRegular = GoogleFonts.lexendDeca(

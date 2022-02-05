@@ -7,7 +7,7 @@ import 'package:bot_toast/bot_toast.dart';
 class AppWidget extends StatelessWidget {
   final botToastBuilder = BotToastInit();
 
-  AppWidget({Key? key}) : super(key: key);
+  AppWidget({key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,22 @@ class AppWidget extends StatelessWidget {
         title: 'PlantaAi',
         theme: ThemeData(
             fontFamily: 'Inter',
-            primarySwatch: Colors.blue,
+            primarySwatch: MaterialColor(
+              0xFF678647,
+              const <int, Color>{
+                50: const Color(0xFF678647), //10%
+                100: const Color(0xFF678647), //20%
+                200: const Color(0xFF678647), //30%
+                300: const Color(0xFF678647), //40%
+                400: const Color(0xFF678647), //50%
+                500: const Color(0xFF678647), //60%
+                600: const Color(0xFF678647), //70%
+                700: const Color(0xFF678647), //80%
+                800: const Color(0xFF678647), //90%
+                900: const Color(0xFF678647), //100%
+              },
+            ),
+            //primarySwatch: ColorsApp.primary,
             canvasColor: Colors.transparent),
         initialRoute: '/login',
       ).modular(),

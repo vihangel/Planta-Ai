@@ -3,7 +3,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:path_provider/path_provider.dart' as path_provider;
-import 'package:planta_ai/data/models/user/user_model.dart';
+
+import 'package:plantaai/data/models/user/user_model.dart';
 
 import 'app_module.dart';
 import 'app_widget.dart';

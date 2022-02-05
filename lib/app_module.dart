@@ -1,8 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:planta_ai/modules/home/home_page.dart';
-import 'package:planta_ai/modules/maps/maps_controller.dart';
 
 import 'modules/home/home_controller.dart';
+import 'modules/home/home_page.dart';
 import 'modules/login/login_controller.dart';
 import 'modules/login/login_page.dart';
 
@@ -22,3 +21,5 @@ class AppModule extends Module {
     ChildRoute('/login', child: (_, args) => const LoginPage()),
   ];
 }
+
+class MapsController {}
