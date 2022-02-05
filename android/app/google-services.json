@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:868293707342:android:183ee0dc6b738b9f68651f",
         "android_client_info": {
-          "package_name": "com.example.plantaae"
+          "package_name": "com.example.plantaai"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "868293707342-gamvhdhpqb5gfv7db8k6058ae51goadp.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.plantaae",
+            "package_name": "com.example.plantaai",
             "certificate_hash": "19cdf2b6fd5f2f02428ab63e3fe8658cd68af79e"
           }
         },
