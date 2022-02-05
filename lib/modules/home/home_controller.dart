@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mobx/mobx.dart';
+import 'package:planta_ai/data/repository/user/user_repository.dart';
 
 part 'home_controller.g.dart';
 
@@ -55,5 +58,14 @@ abstract class _HomeControllerBase with Store {
   @action
   void setEmail(String value) {
     email = value;
+  }
+
+  @action
+  Future<void> logout() async {
+    GoogleSignIn _googleSignIn = GoogleSignIn();
+    await _googleSignIn.signOut();
+    await FacebookAuth.i.logOut();
+    await UserRepository.deleteAll();
+    Modular.to.navigate("/login");
   }
 }

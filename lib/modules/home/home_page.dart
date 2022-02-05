@@ -16,9 +16,13 @@ class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   static List<Widget> widget = <Widget>[
-    ProductPage(),
-    Text("a"),
-    Text("a"),
+    const ProductPage(),
+    Center(
+        child: Icon(Icons.build_circle_outlined,
+            color: Colors.grey[400], size: 200)),
+    const Center(
+        child:
+            Icon(Icons.build_circle_outlined, color: Colors.black, size: 200)),
   ];
 
   @override
@@ -137,7 +141,7 @@ class HomePage extends StatelessWidget {
                   style: TextStyles.regular,
                 ),
                 onTap: () {
-                  Navigator.pop(context);
+                  controller.logout();
                 },
               ),
             ],

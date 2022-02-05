@@ -42,13 +42,13 @@ mixin _$ProductController on _ProductControllerBase, Store {
   final _$imagesAtom = Atom(name: '_ProductControllerBase.images');
 
   @override
-  List<ImageProvider<Object>> get images {
+  List<dynamic> get images {
     _$imagesAtom.reportRead();
     return super.images;
   }
 
   @override
-  set images(List<ImageProvider<Object>> value) {
+  set images(List<dynamic> value) {
     _$imagesAtom.reportWrite(value, super.images, () {
       super.images = value;
     });

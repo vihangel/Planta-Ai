@@ -1,9 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
-import 'package:planta_ai/models/plants/page_plants_model.dart';
-import 'package:planta_ai/models/plants/plants_model.dart';
+import 'package:planta_ai/data/models/plants/page_plants_model.dart';
+import 'package:planta_ai/data/models/plants/plants_model.dart';
+
 import 'package:planta_ai/services/plants/plants_service.dart';
 import 'package:planta_ai/shared/constants.dart';
 
@@ -19,7 +21,8 @@ abstract class _ProductControllerBase with Store {
   List<PlantsModel> plants = [];
 
   @observable
-  List<ImageProvider<Object>> images = [];
+  List images = [];
+
   @observable
   List<PlantsModel> plantsOk = [];
 
@@ -60,11 +63,16 @@ abstract class _ProductControllerBase with Store {
   @action
   Future<void> loadPlants(context) async {
     loader = "loading";
+    if (plants.isEmpty) {
+      await getPlants();
+    }
+
     for (var i = 0; i < plants.length; i++) {
-      images.add(NetworkImage(
-        plants[i].src!.original,
-      ));
-      await precacheImage(images[i], context);
+      //images.add();
+      // images.add(NetworkImage(
+      //   plants[i].src!.original,
+      // )));
+      //await precacheImage(images[i], context);
       print("passou aqui");
     }
 

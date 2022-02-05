@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:planta_ai/models/plants/page_plants_model.dart';
+
+import 'package:planta_ai/data/models/plants/page_plants_model.dart';
+
 import 'package:planta_ai/shared/constants.dart';
 import 'package:retrofit/http.dart';
 

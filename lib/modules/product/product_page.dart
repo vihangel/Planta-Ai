@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:planta_ai/modules/maps/maps_page.dart';
 import 'package:planta_ai/modules/product/product_controller.dart';
 import 'package:planta_ai/shared/resources/colors.dart';
 import 'package:planta_ai/shared/resources/text_style.dart';
@@ -185,16 +186,31 @@ class ProductPage extends StatelessWidget {
                       SizedBox(
                         height: 100,
                         child: Container(
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: controller.images[index]
-                              // controller.plants[index].src!.original,
-
-                              ,
-                              fit: BoxFit.cover,
-
-                              //opacity: 1,
+                          width: size.width,
+                          child: CachedNetworkImage(
+                            placeholder: (context, url) => Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                CircularProgressIndicator(),
+                              ],
                             ),
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
+                            imageUrl: controller.plants[index].src!.original,
+                            fit: BoxFit.cover,
+                          ),
+
+                          // ignore: prefer_const_constructors
+                          decoration: BoxDecoration(
+                            // image: DecorationImage(
+                            //   image: controller.images[index]
+                            //   // controller.plants[index].src!.original,
+
+                            //   ,
+                            //   fit: BoxFit.cover,
+
+                            //   //opacity: 1,
+                            // ),
                             borderRadius: const BorderRadius.all(
                                 Radius.circular(
                                     10.0) //                 <--- border radius here
@@ -223,7 +239,12 @@ class ProductPage extends StatelessWidget {
                         ],
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Modular.to.push(MaterialPageRoute(
+                              builder: (context) => MapsPage(
+                                    index: index,
+                                  )));
+                        },
                         child: Container(
                           width: 200,
                           padding: const EdgeInsets.all(7),
@@ -252,7 +273,7 @@ class ProductPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    controller.initialize();
+
     controller.loadPlants(context);
     return Observer(builder: (context) {
       controller.loader;

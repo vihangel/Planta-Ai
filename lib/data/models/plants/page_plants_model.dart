@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:planta_ai/models/plants/plants_model.dart';
-import 'package:planta_ai/models/plants/src_url/src_model.dart';
+import 'package:planta_ai/data/models/plants/plants_model.dart';
+
 part 'page_plants_model.g.dart';
 
 @JsonSerializable()

@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:planta_ai/models/plants/src_url/src_model.dart';
+import 'package:planta_ai/data/models/plants/src_url/src_model.dart';
 
 part 'plants_model.g.dart';
 

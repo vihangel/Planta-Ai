@@ -1,19 +1,27 @@
+import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user_model.g.dart';
 
 @JsonSerializable()
+@HiveType(typeId: 0)
 class UserModel {
-  final String name;
+  @HiveField(0)
+  final String? name;
+
+  @HiveField(1)
   final String? email;
+
+  @HiveField(2)
   final String? photoURL;
 
+  @HiveField(3)
   final String? id;
 
   UserModel({
-    this.email,
+    this.name,
     this.id,
-    required this.name,
+    required this.email,
     this.photoURL,
   });
 

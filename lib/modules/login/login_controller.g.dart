@@ -151,11 +151,11 @@ mixin _$LoginController on _LoginControllerBase, Store {
   }
 
   @override
-  void saveUser() {
+  void reset() {
     final _$actionInfo = _$_LoginControllerBaseActionController.startAction(
-        name: '_LoginControllerBase.saveUser');
+        name: '_LoginControllerBase.reset');
     try {
-      return super.saveUser();
+      return super.reset();
     } finally {
       _$_LoginControllerBaseActionController.endAction(_$actionInfo);
     }
