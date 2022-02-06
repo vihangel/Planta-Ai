@@ -64,7 +64,7 @@
 <br>
 <h2 align="center">Visualizando o projeto 👀</h2>
 <br>
-   <img width="100%" src="https://github.com/vihangel/Planta-Ai/blob/master/assets/img/File%20Cover.png" />
+   <img width="100%" src="https://github.com/vihangel/Planta-Ai/blob/master/assets/img/cover.png"/>
 <a href="https://www.figma.com/file/pa1grDBrzfYGTQUcf9SQS0/Planta-Ai?node-id=45%3A2"> Olhe no Figma 📎<a>
 ---
 <br>
