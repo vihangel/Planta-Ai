@@ -65,7 +65,7 @@
 <h2 align="center">Visualizando o projeto 👀</h2>
 <br>
    
-<a href=""> Olhe no Figma 📎<a>
+<a href="https://www.figma.com/file/pa1grDBrzfYGTQUcf9SQS0/Planta-Ai?node-id=45%3A2"> Olhe no Figma 📎<a>
 ---
 <br>
 <a href="https://drive.google.com/file/d/17hZsAUxg9qWNwCxb47oJKQ9sUJDQ4A46/view?usp=sharing"> Download APK 📎<a>
