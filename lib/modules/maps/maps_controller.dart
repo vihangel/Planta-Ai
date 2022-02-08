@@ -14,13 +14,14 @@ part 'maps_controller.g.dart';
 class MapsController = _MapsControllerBase with _$MapsController;
 
 abstract class _MapsControllerBase with Store {
-  @action
-  void initialize() {}
+  @observable
+  bool isReadonly = false;
 
   @observable
-  LatLng initialcameraposition = LatLng(14.2350, 51.9253);
+  LatLng? pickedPosition;
 
-  GoogleMapController? controllerMap;
+  @observable
+  LatLng? initialcameraposition = LatLng(14.2350, 51.9253);
 
   @observable
   ProductController controller = Modular.get<ProductController>();
@@ -28,21 +29,25 @@ abstract class _MapsControllerBase with Store {
   @observable
   List<PlantsModel> plants = [];
 
-  @observable
-  Location location = Location();
+  @action
+  Future<void> selectPosition(LatLng position) async {
+    pickedPosition = position;
+    adress = await getAddress(position.latitude, position.longitude);
+  }
 
   @action
-  void onMapCreated(GoogleMapController _cntlr) {
-    location.onLocationChanged.listen(
-      (l) {
-        getAddress(l.latitude!, l.longitude!);
-        controllerMap!.animateCamera(
-          CameraUpdate.newCameraPosition(
-            CameraPosition(target: LatLng(l.latitude!, l.longitude!), zoom: 15),
-          ),
-        );
-      },
-    );
+  Future<void> getCurrentUserLocation() async {
+    print("aqui");
+    try {
+      final locData = await Location().getLocation();
+      initialcameraposition = LatLng(
+        locData.latitude as double,
+        locData.longitude as double,
+      );
+      selectPosition(initialcameraposition!);
+    } catch (e) {
+      return;
+    }
   }
 
   @action
@@ -51,8 +56,6 @@ abstract class _MapsControllerBase with Store {
     GeoCode geoCode = GeoCode();
     Address address =
         await geoCode.reverseGeocoding(latitude: lat, longitude: lang);
-    print(
-        "${address.streetAddress}, ${address.city}, ${address.countryName}, ${address.postal}");
     adress =
         "${address.streetAddress}, ${address.city}, ${address.countryName}, ${address.postal}";
     return "${address.streetAddress}, ${address.city}, ${address.countryName}, ${address.postal}";
@@ -65,4 +68,17 @@ abstract class _MapsControllerBase with Store {
   void getData() {
     plants.addAll(controller.plants);
   }
+
+  // @action
+  // void _submitForm() {
+  //   if (_isValidForm()) return;
+
+  //   Provider.of<GreatPlaces>(context, listen: false).addPlace(
+  //     _titleController.text,
+  //     _pickedImage as File,
+  //     _pickedPosition as LatLng,
+  //   );
+
+  //   Modular.to.pop();
+  // }
 }

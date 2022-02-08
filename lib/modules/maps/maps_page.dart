@@ -17,6 +17,7 @@ class MapsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    controller.getCurrentUserLocation();
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -40,11 +41,24 @@ class MapsPage extends StatelessWidget {
             Container(
               height: size.height / 3,
               child: Observer(builder: (context) {
+                controller.initialcameraposition!;
                 return GoogleMap(
-                  initialCameraPosition:
-                      CameraPosition(target: controller.initialcameraposition),
+                  initialCameraPosition: CameraPosition(
+                      target: controller.initialcameraposition!, zoom: 18),
                   mapType: MapType.normal,
-                  onMapCreated: controller.onMapCreated,
+                  onTap:
+                      controller.isReadonly ? null : controller.selectPosition,
+                  markers: (controller.pickedPosition == null) //&&
+                      // !controller.isReadonly)
+                      ? Set()
+                      : {
+                          Marker(
+                            markerId: const MarkerId('p1'),
+                            position: controller.pickedPosition ??
+                                controller.initialcameraposition!,
+                          ),
+                        },
+                  //onMapCreated: controller.onMapCreated,
                   myLocationEnabled: true,
                   myLocationButtonEnabled: true,
                 );
@@ -130,12 +144,14 @@ class MapsPage extends StatelessWidget {
                           textAlign: TextAlign.left,
                           softWrap: true,
                         ),
-                        Text(
-                          controller.adress,
-                          style: TextStyles.titleCard,
-                          textAlign: TextAlign.left,
-                          softWrap: true,
-                        ),
+                        Observer(builder: (context) {
+                          return Text(
+                            controller.adress,
+                            style: TextStyles.titleCard,
+                            textAlign: TextAlign.left,
+                            softWrap: true,
+                          );
+                        }),
                       ],
                     ),
                     Row(
@@ -212,7 +228,8 @@ class MapsPage extends StatelessWidget {
                                         onPressed: () {
                                           var snackBar = SnackBar(
                                             backgroundColor: ColorsApp.white,
-                                            duration: Duration(seconds: 5),
+                                            duration:
+                                                const Duration(seconds: 5),
                                             behavior: SnackBarBehavior.floating,
                                             elevation: 150.0,
                                             dismissDirection:

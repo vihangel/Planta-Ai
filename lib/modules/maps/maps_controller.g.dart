@@ -9,17 +9,47 @@ part of 'maps_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$MapsController on _MapsControllerBase, Store {
+  final _$isReadonlyAtom = Atom(name: '_MapsControllerBase.isReadonly');
+
+  @override
+  bool get isReadonly {
+    _$isReadonlyAtom.reportRead();
+    return super.isReadonly;
+  }
+
+  @override
+  set isReadonly(bool value) {
+    _$isReadonlyAtom.reportWrite(value, super.isReadonly, () {
+      super.isReadonly = value;
+    });
+  }
+
+  final _$pickedPositionAtom = Atom(name: '_MapsControllerBase.pickedPosition');
+
+  @override
+  LatLng? get pickedPosition {
+    _$pickedPositionAtom.reportRead();
+    return super.pickedPosition;
+  }
+
+  @override
+  set pickedPosition(LatLng? value) {
+    _$pickedPositionAtom.reportWrite(value, super.pickedPosition, () {
+      super.pickedPosition = value;
+    });
+  }
+
   final _$initialcamerapositionAtom =
       Atom(name: '_MapsControllerBase.initialcameraposition');
 
   @override
-  LatLng get initialcameraposition {
+  LatLng? get initialcameraposition {
     _$initialcamerapositionAtom.reportRead();
     return super.initialcameraposition;
   }
 
   @override
-  set initialcameraposition(LatLng value) {
+  set initialcameraposition(LatLng? value) {
     _$initialcamerapositionAtom.reportWrite(value, super.initialcameraposition,
         () {
       super.initialcameraposition = value;
@@ -56,21 +86,6 @@ mixin _$MapsController on _MapsControllerBase, Store {
     });
   }
 
-  final _$locationAtom = Atom(name: '_MapsControllerBase.location');
-
-  @override
-  Location get location {
-    _$locationAtom.reportRead();
-    return super.location;
-  }
-
-  @override
-  set location(Location value) {
-    _$locationAtom.reportWrite(value, super.location, () {
-      super.location = value;
-    });
-  }
-
   final _$adressAtom = Atom(name: '_MapsControllerBase.adress');
 
   @override
@@ -86,6 +101,24 @@ mixin _$MapsController on _MapsControllerBase, Store {
     });
   }
 
+  final _$selectPositionAsyncAction =
+      AsyncAction('_MapsControllerBase.selectPosition');
+
+  @override
+  Future<void> selectPosition(LatLng position) {
+    return _$selectPositionAsyncAction
+        .run(() => super.selectPosition(position));
+  }
+
+  final _$getCurrentUserLocationAsyncAction =
+      AsyncAction('_MapsControllerBase.getCurrentUserLocation');
+
+  @override
+  Future<void> getCurrentUserLocation() {
+    return _$getCurrentUserLocationAsyncAction
+        .run(() => super.getCurrentUserLocation());
+  }
+
   final _$getAddressAsyncAction = AsyncAction('_MapsControllerBase.getAddress');
 
   @override
@@ -95,28 +128,6 @@ mixin _$MapsController on _MapsControllerBase, Store {
 
   final _$_MapsControllerBaseActionController =
       ActionController(name: '_MapsControllerBase');
-
-  @override
-  void initialize() {
-    final _$actionInfo = _$_MapsControllerBaseActionController.startAction(
-        name: '_MapsControllerBase.initialize');
-    try {
-      return super.initialize();
-    } finally {
-      _$_MapsControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void onMapCreated(GoogleMapController _cntlr) {
-    final _$actionInfo = _$_MapsControllerBaseActionController.startAction(
-        name: '_MapsControllerBase.onMapCreated');
-    try {
-      return super.onMapCreated(_cntlr);
-    } finally {
-      _$_MapsControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
 
   @override
   void getData() {
@@ -132,10 +143,11 @@ mixin _$MapsController on _MapsControllerBase, Store {
   @override
   String toString() {
     return '''
+isReadonly: ${isReadonly},
+pickedPosition: ${pickedPosition},
 initialcameraposition: ${initialcameraposition},
 controller: ${controller},
 plants: ${plants},
-location: ${location},
 adress: ${adress}
     ''';
   }
