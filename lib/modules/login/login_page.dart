@@ -19,168 +19,170 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: ColorsApp.gray,
-      body: Observer(builder: (context) {
-        controller.isSubmited;
-        return SizedBox(
-          width: size.width,
-          height: size.height,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: size.width * 0.15,
-                ),
-                decoration: const BoxDecoration(
-                  color: ColorsApp.primary,
-                  borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(60.0),
-                    bottomLeft: Radius.circular(60.0),
+    return SafeArea(
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: ColorsApp.gray,
+        body: Observer(builder: (context) {
+          controller.isSubmited;
+          return SizedBox(
+            width: size.width,
+            height: size.height,
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: size.width * 0.15,
+                  ),
+                  decoration: const BoxDecoration(
+                    color: ColorsApp.primary,
+                    borderRadius: BorderRadius.only(
+                      bottomRight: Radius.circular(60.0),
+                      bottomLeft: Radius.circular(60.0),
+                    ),
+                  ),
+                  width: size.width,
+                  height: size.height * 0.30,
+                  //color: ColorsApp.primary,
+                  child: SvgPicture.asset(
+                    ImagesApp.logo,
+                    //height: 0,
                   ),
                 ),
-                width: size.width,
-                height: size.height * 0.30,
-                //color: ColorsApp.primary,
-                child: SvgPicture.asset(
-                  ImagesApp.logo,
-                  //height: 0,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(30.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(padding: EdgeInsets.all(10)),
-                    Text(
-                      "Faça login para comprar novas plantinhas",
-                      style: TextStyles.titleRegular,
-                      textAlign: TextAlign.center,
-                    ),
-                    Padding(padding: EdgeInsets.all(20)),
-                    TextField(
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.email_outlined),
-                        hintText: "Email",
-                        errorText: controller.validateEmail(),
-                        border: InputBorder.none,
-                        filled: true,
-                        fillColor: ColorsApp.white,
+                Padding(
+                  padding: EdgeInsets.all(30.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(padding: EdgeInsets.all(10)),
+                      Text(
+                        "Faça login para comprar novas plantinhas",
+                        style: TextStyles.titleRegular,
+                        textAlign: TextAlign.center,
                       ),
-                      onChanged: (value) {
-                        controller.setEmail(value);
-                      },
-                    ),
-                    Padding(padding: EdgeInsets.all(10)),
-                    TextField(
-                      onChanged: (value) {
-                        controller.setPassword(value);
-                      },
-                      obscureText: !controller.isVisible,
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.password),
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            controller.isVisible
-                                ? Icons.visibility
-                                : Icons.visibility_off,
+                      Padding(padding: EdgeInsets.all(20)),
+                      TextField(
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.email_outlined),
+                          hintText: "Email",
+                          errorText: controller.validateEmail(),
+                          border: InputBorder.none,
+                          filled: true,
+                          fillColor: ColorsApp.white,
+                        ),
+                        onChanged: (value) {
+                          controller.setEmail(value);
+                        },
+                      ),
+                      Padding(padding: EdgeInsets.all(10)),
+                      TextField(
+                        onChanged: (value) {
+                          controller.setPassword(value);
+                        },
+                        obscureText: !controller.isVisible,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.password),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              controller.isVisible
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: ColorsApp.primary,
+                            ),
+                            onPressed: () {
+                              controller.setIsVisible();
+                            },
+                          ),
+                          hintText: "Senha",
+                          errorText: controller.validatePassword(),
+                          border: InputBorder.none,
+                          filled: true,
+                          fillColor: ColorsApp.white,
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Modular.to.push(MaterialPageRoute(
+                              builder: (context) => const PasswordPage()));
+                        },
+                        child: Text(
+                          "Esqueceu a senha?",
+                          style: TextStyles.regular,
+                        ),
+                      ),
+                      Padding(padding: EdgeInsets.all(10)),
+                      TextButton(
+                        onPressed: () {
+                          controller.verify();
+                        },
+                        child: Container(
+                          width: size.width,
+                          padding: EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
                             color: ColorsApp.primary,
                           ),
-                          onPressed: () {
-                            controller.setIsVisible();
-                          },
+                          child: Text(
+                            "Entrar",
+                            style: TextStyles.buttonBold,
+                            textAlign: TextAlign.center,
+                          ),
                         ),
-                        hintText: "Senha",
-                        errorText: controller.validatePassword(),
-                        border: InputBorder.none,
-                        filled: true,
-                        fillColor: ColorsApp.white,
                       ),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Modular.to.push(MaterialPageRoute(
-                            builder: (context) => const PasswordPage()));
-                      },
-                      child: Text(
-                        "Esqueceu a senha?",
+                      Padding(padding: EdgeInsets.all(10)),
+                      Text(
+                        "ou",
                         style: TextStyles.regular,
+                        textAlign: TextAlign.center,
                       ),
-                    ),
-                    Padding(padding: EdgeInsets.all(10)),
-                    TextButton(
-                      onPressed: () {
-                        controller.verify();
-                      },
-                      child: Container(
-                        width: size.width,
-                        padding: EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          color: ColorsApp.primary,
-                        ),
-                        child: Text(
-                          "Entrar",
-                          style: TextStyles.buttonBold,
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
-                    Padding(padding: EdgeInsets.all(10)),
-                    Text(
-                      "ou",
-                      style: TextStyles.regular,
-                      textAlign: TextAlign.center,
-                    ),
-                    Padding(padding: EdgeInsets.all(10)),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TextButton(
-                          onPressed: () {
-                            controller.faceBookAuth();
-                            print("aqui");
-                          },
-                          child: Container(
-                            padding: EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              color: Colors.blue[300],
-                            ),
-                            child: Icon(
-                              FontAwesomeIcons.facebookF,
-                              color: ColorsApp.white,
+                      Padding(padding: EdgeInsets.all(10)),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              controller.faceBookAuth();
+                              print("aqui");
+                            },
+                            child: Container(
+                              padding: EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30),
+                                color: Colors.blue[300],
+                              ),
+                              child: Icon(
+                                FontAwesomeIcons.facebookF,
+                                color: ColorsApp.white,
+                              ),
                             ),
                           ),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            controller.googleAuth();
-                          },
-                          child: Container(
-                            padding: EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              color: Colors.red[300],
-                            ),
-                            child: Icon(
-                              FontAwesomeIcons.google,
-                              color: ColorsApp.white,
+                          TextButton(
+                            onPressed: () {
+                              controller.googleAuth();
+                            },
+                            child: Container(
+                              padding: EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30),
+                                color: Colors.red[300],
+                              ),
+                              child: Icon(
+                                FontAwesomeIcons.google,
+                                color: ColorsApp.white,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    )
-                  ],
+                        ],
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-        );
-      }),
+              ],
+            ),
+          );
+        }),
+      ),
     );
   }
 }

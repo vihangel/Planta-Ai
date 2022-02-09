@@ -52,7 +52,6 @@ class ProductPage extends StatelessWidget {
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        //color: AppColors.stroke,
                       ),
                     ),
                   ),
@@ -76,7 +75,6 @@ class ProductPage extends StatelessWidget {
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        //color: AppColors.stroke,
                       ),
                     ),
                   ),
@@ -100,7 +98,6 @@ class ProductPage extends StatelessWidget {
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        //color: AppColors.stroke,
                       ),
                     ),
                   ),
@@ -124,7 +121,6 @@ class ProductPage extends StatelessWidget {
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        //color: AppColors.stroke,
                       ),
                     ),
                   ),
@@ -148,7 +144,6 @@ class ProductPage extends StatelessWidget {
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        //color: AppColors.stroke,
                       ),
                     ),
                   ),
@@ -186,13 +181,10 @@ class ProductPage extends StatelessWidget {
                         color: ColorsApp.gray2.withOpacity(0.3),
                         spreadRadius: 1,
                         blurRadius: 6,
-                        offset:
-                            const Offset(0, 1), // changes position of shadow
+                        offset: const Offset(0, 1),
                       ),
                     ],
-                    borderRadius: const BorderRadius.all(Radius.circular(
-                            10.0) //                 <--- border radius here
-                        ),
+                    borderRadius: const BorderRadius.all(Radius.circular(10.0)),
                     color: ColorsApp.white,
                   ),
                   child: Column(
@@ -242,10 +234,13 @@ class ProductPage extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          Modular.to.push(MaterialPageRoute(
+                          Modular.to.push(
+                            MaterialPageRoute(
                               builder: (context) => MapsPage(
-                                    index: index,
-                                  )));
+                                index: index,
+                              ),
+                            ),
+                          );
                         },
                         child: Container(
                           width: 200,

@@ -32,15 +32,7 @@ abstract class _MapsControllerBase with Store {
   @action
   Future<void> selectPosition(LatLng position) async {
     pickedPosition = position;
-    adress = await getAddress(position.latitude, position.longitude);
-  }
-
-  @action
-  Future<LatLng?> onTapMap() async {
-    Future.delayed(const Duration(seconds: 2), () {
-      return isReadonly ? null : selectPosition;
-    });
-    return pickedPosition;
+    await getAddress(position.latitude, position.longitude);
   }
 
   @action
@@ -67,24 +59,27 @@ abstract class _MapsControllerBase with Store {
         GeoCode geoCode = GeoCode();
         Address address =
             await geoCode.reverseGeocoding(latitude: lat, longitude: lang);
-        adress =
+        addressMap =
             "${address.streetAddress}, ${address.city}, ${address.countryName}, ${address.postal}";
-        return "${address.streetAddress}, ${address.city}, ${address.countryName}, ${address.postal}";
+        return addressMap;
       } catch (e) {
-        Future.delayed(const Duration(seconds: 2), () {});
-        GeoCode geoCode = GeoCode();
-        Address address =
-            await geoCode.reverseGeocoding(latitude: lat, longitude: lang);
         print(e);
-        adress =
-            "${address.streetAddress}, ${address.city}, ${address.countryName}, ${address.postal}";
-        return "${address.streetAddress}, ${address.city}, ${address.countryName}, ${address.postal}";
+        Future.delayed(const Duration(seconds: 2), () async {
+          addressMap = "Atualizando...";
+          GeoCode geoCode = GeoCode();
+          Address address =
+              await geoCode.reverseGeocoding(latitude: lat, longitude: lang);
+
+          addressMap =
+              "${address.streetAddress}, ${address.city}, ${address.countryName}, ${address.postal}";
+        });
+        return addressMap;
       }
     }
   }
 
   @observable
-  String adress = "";
+  String addressMap = "";
 
   @action
   void getData() {
