@@ -84,11 +84,12 @@ abstract class _HomeControllerBase with Store {
   @action
   Future<void> logout() async {
     Modular.to.navigate("/splash");
+    Future.delayed(const Duration(seconds: 2), () {
+      user.clear();
+    });
     GoogleSignIn _googleSignIn = GoogleSignIn();
-    await _googleSignIn.signOut();
-    await FacebookAuth.i.logOut();
-    await UserRepository.deleteAll();
-
-    user.clear();
+    _googleSignIn.signOut();
+    FacebookAuth.i.logOut();
+    UserRepository.deleteAll();
   }
 }
