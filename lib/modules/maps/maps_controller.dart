@@ -21,7 +21,7 @@ abstract class _MapsControllerBase with Store {
   LatLng? pickedPosition;
 
   @observable
-  LatLng? initialcameraposition = LatLng(14.2350, 51.9253);
+  LatLng? initialcameraposition = LatLng(0, 0);
 
   @observable
   ProductController controller = Modular.get<ProductController>();
@@ -35,6 +35,17 @@ abstract class _MapsControllerBase with Store {
     adress = await getAddress(position.latitude, position.longitude);
   }
 
+  @observable
+  Completer<GoogleMapController> mapController = Completer();
+
+  @action
+  Future<LatLng?> onTapMap() async {
+    Future.delayed(const Duration(seconds: 2), () {
+      return isReadonly ? null : selectPosition;
+    });
+    return pickedPosition;
+  }
+
   @action
   Future<void> getCurrentUserLocation() async {
     print("aqui");
@@ -44,21 +55,38 @@ abstract class _MapsControllerBase with Store {
         locData.latitude as double,
         locData.longitude as double,
       );
+      print("camera" + initialcameraposition.toString());
       selectPosition(initialcameraposition!);
     } catch (e) {
+      print("erro" + e.toString());
       return;
     }
   }
 
   @action
   Future<String> getAddress(double? lat, double? lang) async {
-    if (lat == null || lang == null) return "";
-    GeoCode geoCode = GeoCode();
-    Address address =
-        await geoCode.reverseGeocoding(latitude: lat, longitude: lang);
-    adress =
-        "${address.streetAddress}, ${address.city}, ${address.countryName}, ${address.postal}";
-    return "${address.streetAddress}, ${address.city}, ${address.countryName}, ${address.postal}";
+    if (lat == null || lang == null) {
+      return "";
+    } else {
+      try {
+        GeoCode geoCode = GeoCode();
+        Address address =
+            await geoCode.reverseGeocoding(latitude: lat, longitude: lang);
+        adress =
+            "${address.streetAddress}, ${address.city}, ${address.countryName}, ${address.postal}";
+        return "${address.streetAddress}, ${address.city}, ${address.countryName}, ${address.postal}";
+      } catch (e) {
+        print("Aqui");
+        Future.delayed(const Duration(seconds: 2), () {});
+        GeoCode geoCode = GeoCode();
+        Address address =
+            await geoCode.reverseGeocoding(latitude: lat, longitude: lang);
+        print(e);
+        adress =
+            "${address.streetAddress}, ${address.city}, ${address.countryName}, ${address.postal}";
+        return "${address.streetAddress}, ${address.city}, ${address.countryName}, ${address.postal}";
+      }
+    }
   }
 
   @observable
