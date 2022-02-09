@@ -86,21 +86,6 @@ mixin _$MapsController on _MapsControllerBase, Store {
     });
   }
 
-  final _$mapControllerAtom = Atom(name: '_MapsControllerBase.mapController');
-
-  @override
-  Completer<GoogleMapController> get mapController {
-    _$mapControllerAtom.reportRead();
-    return super.mapController;
-  }
-
-  @override
-  set mapController(Completer<GoogleMapController> value) {
-    _$mapControllerAtom.reportWrite(value, super.mapController, () {
-      super.mapController = value;
-    });
-  }
-
   final _$adressAtom = Atom(name: '_MapsControllerBase.adress');
 
   @override
@@ -170,7 +155,6 @@ pickedPosition: ${pickedPosition},
 initialcameraposition: ${initialcameraposition},
 controller: ${controller},
 plants: ${plants},
-mapController: ${mapController},
 adress: ${adress}
     ''';
   }

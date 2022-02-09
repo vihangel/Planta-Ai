@@ -42,7 +42,7 @@ class MapsPage extends StatelessWidget {
           print(
               "camera" + controller.initialcameraposition!.latitude.toString());
           controller.getData();
-          if (controller.initialcameraposition == LatLng(0, 0)) {
+          if (controller.initialcameraposition == const LatLng(0, 0)) {
             return const Center(child: CircularProgressIndicator());
           }
           return Column(
@@ -58,9 +58,6 @@ class MapsPage extends StatelessWidget {
                         target: controller.initialcameraposition!,
                         zoom: 15,
                       ),
-                      // onMapCreated: (GoogleMapController mapController) {
-                      //   controller.mapController.complete(mapController);
-                      // },
                       mapType: MapType.normal,
                       onTap: controller.isReadonly
                           ? null
@@ -223,51 +220,49 @@ class MapsPage extends StatelessWidget {
                         child: TextButton(
                           onPressed: () {
                             showCupertinoDialog(
-                                context: context,
-                                builder: (_) => CupertinoAlertDialog(
-                                      title: Text("Deseja realizar a compra?",
-                                          style: TextStyles.title),
-                                      actions: [
-                                        CupertinoButton(
-                                            child: const Text(
-                                              'Cancelar',
-                                              style: const TextStyle(
-                                                  color: ColorsApp.primary),
-                                            ),
-                                            onPressed: () {
-                                              Modular.to.pop();
-                                            }),
-                                        CupertinoButton(
-                                          child: const Text(
-                                            'Comprar',
-                                            style: TextStyle(
-                                                color: ColorsApp.primary),
-                                          ),
-                                          onPressed: () {
-                                            var snackBar = SnackBar(
-                                              backgroundColor: ColorsApp.white,
-                                              duration:
-                                                  const Duration(seconds: 5),
-                                              behavior:
-                                                  SnackBarBehavior.floating,
-                                              elevation: 150.0,
-                                              dismissDirection:
-                                                  DismissDirection.horizontal,
-                                              content: Text(
-                                                  "Compra realizada com sucesso!",
-                                                  style: TextStyles.regular),
-                                            );
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(snackBar);
+                              context: context,
+                              builder: (_) => CupertinoAlertDialog(
+                                title: Text("Deseja realizar a compra?",
+                                    style: TextStyles.title),
+                                actions: [
+                                  CupertinoButton(
+                                      child: const Text(
+                                        'Cancelar',
+                                        style:
+                                            TextStyle(color: ColorsApp.primary),
+                                      ),
+                                      onPressed: () {
+                                        Modular.to.pop();
+                                      }),
+                                  CupertinoButton(
+                                    child: const Text(
+                                      'Comprar',
+                                      style:
+                                          TextStyle(color: ColorsApp.primary),
+                                    ),
+                                    onPressed: () {
+                                      var snackBar = SnackBar(
+                                        backgroundColor: ColorsApp.primary,
+                                        duration: const Duration(seconds: 5),
+                                        behavior: SnackBarBehavior.floating,
+                                        elevation: 150.0,
+                                        dismissDirection:
+                                            DismissDirection.horizontal,
+                                        content: Text(
+                                            "Compra realizada com sucesso!",
+                                            style: TextStyles.buttonBold),
+                                      );
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(snackBar);
 
-                                            Modular.to.popAndPushNamed(
-                                              "/home",
-                                            );
-                                          },
-                                        )
-                                      ],
-                                    ));
-
+                                      Modular.to.popAndPushNamed(
+                                        "/home",
+                                      );
+                                    },
+                                  )
+                                ],
+                              ),
+                            );
                             //controller.verify();
                           },
                           child: Text(

@@ -35,9 +35,6 @@ abstract class _MapsControllerBase with Store {
     adress = await getAddress(position.latitude, position.longitude);
   }
 
-  @observable
-  Completer<GoogleMapController> mapController = Completer();
-
   @action
   Future<LatLng?> onTapMap() async {
     Future.delayed(const Duration(seconds: 2), () {
@@ -48,17 +45,15 @@ abstract class _MapsControllerBase with Store {
 
   @action
   Future<void> getCurrentUserLocation() async {
-    print("aqui");
     try {
       final locData = await Location().getLocation();
       initialcameraposition = LatLng(
         locData.latitude as double,
         locData.longitude as double,
       );
-      print("camera" + initialcameraposition.toString());
       selectPosition(initialcameraposition!);
     } catch (e) {
-      print("erro" + e.toString());
+      print("erro " + e.toString());
       return;
     }
   }
@@ -76,7 +71,6 @@ abstract class _MapsControllerBase with Store {
             "${address.streetAddress}, ${address.city}, ${address.countryName}, ${address.postal}";
         return "${address.streetAddress}, ${address.city}, ${address.countryName}, ${address.postal}";
       } catch (e) {
-        print("Aqui");
         Future.delayed(const Duration(seconds: 2), () {});
         GeoCode geoCode = GeoCode();
         Address address =
@@ -96,17 +90,4 @@ abstract class _MapsControllerBase with Store {
   void getData() {
     plants.addAll(controller.plants);
   }
-
-  // @action
-  // void _submitForm() {
-  //   if (_isValidForm()) return;
-
-  //   Provider.of<GreatPlaces>(context, listen: false).addPlace(
-  //     _titleController.text,
-  //     _pickedImage as File,
-  //     _pickedPosition as LatLng,
-  //   );
-
-  //   Modular.to.pop();
-  // }
 }
