@@ -171,7 +171,7 @@ abstract class _ProductControllerBase with Store {
   Future<void> loadMorePlants() async {
     List<PagesPlantsModel> response = [];
     List<PlantsModel> responsePlants = [];
-
+    await Future.delayed(const Duration(seconds: 1), () {});
     try {
       //chama
       response.add(await _plantsService.getPlants(

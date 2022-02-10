@@ -46,6 +46,15 @@ abstract class _MapsControllerBase with Store {
       selectPosition(initialcameraposition!);
     } catch (e) {
       print("erro " + e.toString());
+      Future.delayed(const Duration(seconds: 3), () async {
+        final locData = await Location().getLocation();
+        initialcameraposition = LatLng(
+          locData.latitude as double,
+          locData.longitude as double,
+        );
+        selectPosition(initialcameraposition!);
+      });
+
       return;
     }
   }
