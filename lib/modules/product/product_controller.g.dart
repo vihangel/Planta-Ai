@@ -39,18 +39,18 @@ mixin _$ProductController on _ProductControllerBase, Store {
     });
   }
 
-  final _$imagesAtom = Atom(name: '_ProductControllerBase.images');
+  final _$imgPlantsAtom = Atom(name: '_ProductControllerBase.imgPlants');
 
   @override
-  List<dynamic> get images {
-    _$imagesAtom.reportRead();
-    return super.images;
+  List<Widget> get imgPlants {
+    _$imgPlantsAtom.reportRead();
+    return super.imgPlants;
   }
 
   @override
-  set images(List<dynamic> value) {
-    _$imagesAtom.reportWrite(value, super.images, () {
-      super.images = value;
+  set imgPlants(List<Widget> value) {
+    _$imgPlantsAtom.reportWrite(value, super.imgPlants, () {
+      super.imgPlants = value;
     });
   }
 
@@ -69,6 +69,21 @@ mixin _$ProductController on _ProductControllerBase, Store {
     });
   }
 
+  final _$colorAtom = Atom(name: '_ProductControllerBase.color');
+
+  @override
+  String get color {
+    _$colorAtom.reportRead();
+    return super.color;
+  }
+
+  @override
+  set color(String value) {
+    _$colorAtom.reportWrite(value, super.color, () {
+      super.color = value;
+    });
+  }
+
   final _$isSubmitedAtom = Atom(name: '_ProductControllerBase.isSubmited');
 
   @override
@@ -84,6 +99,37 @@ mixin _$ProductController on _ProductControllerBase, Store {
     });
   }
 
+  final _$incrementAtom = Atom(name: '_ProductControllerBase.increment');
+
+  @override
+  int get increment {
+    _$incrementAtom.reportRead();
+    return super.increment;
+  }
+
+  @override
+  set increment(int value) {
+    _$incrementAtom.reportWrite(value, super.increment, () {
+      super.increment = value;
+    });
+  }
+
+  final _$isLoadingVerticalAtom =
+      Atom(name: '_ProductControllerBase.isLoadingVertical');
+
+  @override
+  bool get isLoadingVertical {
+    _$isLoadingVerticalAtom.reportRead();
+    return super.isLoadingVertical;
+  }
+
+  @override
+  set isLoadingVertical(bool value) {
+    _$isLoadingVerticalAtom.reportWrite(value, super.isLoadingVertical, () {
+      super.isLoadingVertical = value;
+    });
+  }
+
   final _$getPlantsAsyncAction =
       AsyncAction('_ProductControllerBase.getPlants');
 
@@ -96,16 +142,17 @@ mixin _$ProductController on _ProductControllerBase, Store {
       AsyncAction('_ProductControllerBase.updatePlants');
 
   @override
-  Future<void> updatePlants(String color) {
-    return _$updatePlantsAsyncAction.run(() => super.updatePlants(color));
+  Future<void> updatePlants(String selectedColor) {
+    return _$updatePlantsAsyncAction
+        .run(() => super.updatePlants(selectedColor));
   }
 
-  final _$loadPlantsAsyncAction =
-      AsyncAction('_ProductControllerBase.loadPlants');
+  final _$loadMorePlantsAsyncAction =
+      AsyncAction('_ProductControllerBase.loadMorePlants');
 
   @override
-  Future<void> loadPlants(dynamic context) {
-    return _$loadPlantsAsyncAction.run(() => super.loadPlants(context));
+  Future<void> loadMorePlants() {
+    return _$loadMorePlantsAsyncAction.run(() => super.loadMorePlants());
   }
 
   final _$_ProductControllerBaseActionController =
@@ -123,13 +170,38 @@ mixin _$ProductController on _ProductControllerBase, Store {
   }
 
   @override
+  void addImgList(int index) {
+    final _$actionInfo = _$_ProductControllerBaseActionController.startAction(
+        name: '_ProductControllerBase.addImgList');
+    try {
+      return super.addImgList(index);
+    } finally {
+      _$_ProductControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void addPlants(List<PlantsModel> responsePlants) {
+    final _$actionInfo = _$_ProductControllerBaseActionController.startAction(
+        name: '_ProductControllerBase.addPlants');
+    try {
+      return super.addPlants(responsePlants);
+    } finally {
+      _$_ProductControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 loader: ${loader},
 plants: ${plants},
-images: ${images},
+imgPlants: ${imgPlants},
 plantsOk: ${plantsOk},
-isSubmited: ${isSubmited}
+color: ${color},
+isSubmited: ${isSubmited},
+increment: ${increment},
+isLoadingVertical: ${isLoadingVertical}
     ''';
   }
 }

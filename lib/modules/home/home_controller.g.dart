@@ -109,17 +109,6 @@ mixin _$HomeController on _HomeControllerBase, Store {
   }
 
   @override
-  Widget getImage() {
-    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
-        name: '_HomeControllerBase.getImage');
-    try {
-      return super.getImage();
-    } finally {
-      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   void getImagePerfil() {
     final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
         name: '_HomeControllerBase.getImagePerfil');

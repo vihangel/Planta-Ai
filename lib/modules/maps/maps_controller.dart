@@ -64,7 +64,7 @@ abstract class _MapsControllerBase with Store {
         return addressMap;
       } catch (e) {
         print(e);
-        Future.delayed(const Duration(seconds: 2), () async {
+        Future.delayed(const Duration(seconds: 3), () async {
           addressMap = "Atualizando...";
           GeoCode geoCode = GeoCode();
           Address address =

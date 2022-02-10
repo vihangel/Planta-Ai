@@ -196,7 +196,7 @@ class HomePage extends StatelessWidget {
                     BottomNavigationBarItem(
                         icon: Icon(
                           controller.selectedIndex == 2
-                              ? Icons.list_alt
+                              ? Icons.history
                               : Icons.history,
                           size: 24,
                           color: controller.selectedIndex == 2

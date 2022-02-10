@@ -42,16 +42,6 @@ abstract class _HomeControllerBase with Store {
     }
   }
 
-  @action
-  Widget getImage() {
-    if (image == "") {
-      return const Icon(Icons.person, color: Colors.white, size: 20);
-    } else {
-      return Image.network(
-          'https://docs.flutter.dev/assets/images/dash/dash-fainting.gif');
-    }
-  }
-
   @observable
   Widget imgPerfil = Container();
 
