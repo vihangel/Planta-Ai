@@ -17,7 +17,7 @@
 - [x] UI - Recuperar senha
 - [x] UI - Listagem de produtos em duas colunas com thumbnail e titulo.
 - [x] API - Pexel para as imagens falsa dos produtos
-- [ ] Deve ser aplicado Lazy Loading na listagem
+- [x] Deve ser aplicado Lazy Loading na listagem
 - [x] UI - Menu Drawer com perfil, meus produtos, configurações e logout (Apenas o logout deve efetivamente funcionar)
 - [x] UI - Após selecionar um produto apresenta uma tela com um mapa (Google) de 1/3 da altura da tela, um Row com um thumbnail e um Column dentro do Row com nome e descrição do produto.
 - [x] UI - Confirmando o produto, mostra um modal para confirmar a compra, caso positivo exibe um SnackBar mosntrando que a compra foi realizada, caso contrário cancela o modal.
